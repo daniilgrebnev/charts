@@ -1,0 +1,15 @@
+@import url('./reset.css');
+
+:root {
+	--font-family: 'Rubik', sans-serif;
+	--product-color: #f37d73;
+	--text-primary: #264354;
+	--text-primary-80: #264354;
+	--text-element-color: #369f48;
+	--line-height: 120%;
+	--blue-color: #566da3;
+	--light-blue-color: #73c3f3;
+	--red-color: #c23024;
+	--orange-color: #fca86f;
+	--green-color: var(--text-element-color);
+}

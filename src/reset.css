@@ -1,0 +1,82 @@
+/* Обнуление отступов и границ */
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
+
+/* HTML5 display-role reset для старых браузеров */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+/* Убираем списки у списков */
+ol,
+ul {
+	list-style: none;
+}
+
+/* Убираем подчеркивание у ссылок */
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Наследование шрифтов для форм */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Убираем стандартный стиль кнопок */
+button {
+	background: none;
+	cursor: pointer;
+}
+
+/* Сброс таблиц */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Изображения responsive по умолчанию */
+img {
+	max-width: 100%;
+	display: block;
+	height: auto;
+}
+
+/* Убираем заливку и тень у выделенного текста */
+::selection {
+	background: transparent;
+	text-shadow: none;
+}
+
+/* Отключаем изменение размера textarea */
+textarea {
+	resize: none;
+}
+
+/* Скрываем крестик в input[type="search"] */
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+	display: none;
+}
