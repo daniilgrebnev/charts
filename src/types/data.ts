@@ -18,6 +18,8 @@ export interface IDataPair {
 export interface IDataItem {
 	id: number
 	data: IDataPair
+	title: string
+	summary: string
 }
 
 export type TDataCollection = IDataItem[]

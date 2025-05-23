@@ -4,6 +4,18 @@
 	justify-content: start;
 	gap: 25px;
 	flex-direction: column;
+	max-height: calc(100dvh - 75px);
+	overflow-y: auto;
+	padding-bottom: 50px;
+}
+.analytics {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	overflow: -moz-scrollbars-none;
+}
+
+.analytics::-webkit-scrollbar {
+	display: none;
 }
 .analytics h1 {
 	padding: 15px 0;
