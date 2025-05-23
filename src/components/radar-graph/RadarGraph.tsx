@@ -7,45 +7,45 @@ import {
 	RadarChart,
 	ResponsiveContainer,
 } from 'recharts'
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { setActiveId } from '../../store/chartsStore'
 import { CustomRadarAngleAxis } from './components/CustomRadarAngleAxis'
 import { CustomRadarShape } from './components/CustomRadarShape'
 
-const data = [
-	{ subject: 'A', value: 0 },
-	{ subject: 'B', value: 13 },
-	{ subject: 'C', value: 75 },
-	{ subject: 'F', value: 15 },
-	{ subject: 'B', value: 60 },
-	{ subject: 'C', value: 75 },
-	{ subject: 'F', value: 11 },
-	{ subject: 'B', value: 60 },
-	{ subject: 'C', value: 75 },
-	{ subject: 'F', value: 63 },
-	{ subject: 'B', value: 60 },
-	{ subject: 'C', value: 90 },
-	{ subject: 'F', value: 88 },
-]
-
 export function RadarGraph() {
+	const store = useAppSelector(state => state.data)
+	const dispatch = useAppDispatch()
+	const activeId = store.activeId
+
+	// Находим индекс активного элемента
+	const activeIndex = store.items.findIndex(item => item.id === activeId)
+
+	const data = store.items.map(item => ({
+		value: item.data[0][item.data[0].length - 1],
+	}))
+
+	const setActive = (index: number) => {
+		const item = store.items[index]
+		dispatch(setActiveId(item.id))
+	}
+
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [radius, setRadius] = useState(0)
-	const [activeIndex, setActiveIndex] = useState(0)
+	const outerRadius = 0.8
 
-	const outerRadius = 0.8 // 80%
-
-	// Высчитываем outerRadius в пикселях (например, 90% от меньшей стороны)
 	useEffect(() => {
 		const resize = () => {
 			if (containerRef.current) {
 				const { offsetWidth, offsetHeight } = containerRef.current
 				const size = Math.min(offsetWidth, offsetHeight)
-				setRadius(size * outerRadius * 0.5) // 90% от диаметра = радиус
+				setRadius(size * outerRadius * 0.5)
 			}
 		}
 		resize()
 		window.addEventListener('resize', resize)
 		return () => window.removeEventListener('resize', resize)
 	}, [])
+
 	return (
 		<div className='radar-chart' ref={containerRef}>
 			<ResponsiveContainer width={'100%'} height={'100%'}>
@@ -66,8 +66,8 @@ export function RadarGraph() {
 						tick={
 							<CustomRadarAngleAxis
 								radius={radius}
-								onChangeElement={(index: number) => setActiveIndex(index)}
-								activeIndex={activeIndex}
+								onChangeElement={setActive}
+								activeIndex={activeIndex} // Передаем индекс, а не ID
 							/>
 						}
 					/>
@@ -76,8 +76,8 @@ export function RadarGraph() {
 						dataKey='value'
 						shape={
 							<CustomRadarShape
-								activeIndex={activeIndex}
-								onChangeElement={(index: number) => setActiveIndex(index)}
+								activeIndex={activeIndex} // Передаем индекс, а не ID
+								onChangeElement={setActive}
 								radius={radius}
 							/>
 						}

@@ -19,10 +19,7 @@ export const AnalyticsChart = () => {
 				</div>
 			</div>
 			<div className={styles.chart}>
-				<MetricsChart
-					firstDataset={[undefined, undefined, 0, 30, 40, 50, 75]}
-					secondDataset={[undefined, undefined, 0, 30, 30, 30, 30]}
-				/>
+				<MetricsChart />
 			</div>
 		</div>
 	)

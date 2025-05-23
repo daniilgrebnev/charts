@@ -1,3 +1,4 @@
+import { useAppSelector } from '../../../../hooks'
 import styles from './analytics-profs.module.css'
 
 const getColor = (percent: number) => {
@@ -11,8 +12,13 @@ const getColor = (percent: number) => {
 }
 
 export const AnalyticsProfs = () => {
-	const percent = 50
+	const data = useAppSelector(state => state.data)
 
+	const activeItem = data.items.find(item => item.id === data.activeId)
+	const percent = activeItem
+		? activeItem.data[0][activeItem.data[0].length - 1]
+		: undefined
+	if (percent == undefined) return
 	return (
 		<div className={styles.analytics_profs}>
 			<div className={styles.analytics_profs_heading}>

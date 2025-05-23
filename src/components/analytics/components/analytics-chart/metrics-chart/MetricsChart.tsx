@@ -1,24 +1,22 @@
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from 'recharts'
+import { useAppSelector } from '../../../../../hooks'
+import { XAxisTick, YAxisTick } from './Ticks'
 
-export const MetricsChart = ({
-	firstDataset,
-	secondDataset,
-}: {
-	firstDataset: (number | undefined)[]
-	secondDataset: (number | undefined)[]
-}) => {
-	// Лейблы для оси X (дни недели)
-	const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
-	const chartWidth = 730
-	const dataCount = weekDays.length
+const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс', '']
 
-	// Рассчитываем позиции вертикальных линий сетки
+export const MetricsChart = () => {
+	const data = useAppSelector(state => state.data)
 
-	// Формируем данные для графика
+	// Явно проверяем, что activeId не undefined/null, а элемент найден
+	const activeItem = data.items.find(item => item.id === data.activeId)
+	const activeData = activeItem?.data
+
+	if (!activeData) return null
+
 	const chartData = weekDays.map((day, index) => ({
 		name: day,
-		uv: firstDataset[index],
-		pv: secondDataset[index],
+		uv: activeData[0][index],
+		pv: activeData[1][index],
 	}))
 
 	return (
@@ -34,7 +32,7 @@ export const MetricsChart = ({
 				dataKey='name'
 				tickLine={false}
 				axisLine={false}
-				tick={<XAxisTick />}
+				tick={<XAxisTick arr={activeData[0]} />}
 			/>
 			<YAxis
 				domain={[0, 100]}
@@ -53,41 +51,18 @@ export const MetricsChart = ({
 				fill='none'
 				dot={{ fill: '#566DA3', strokeWidth: 2, r: 3.5 }}
 				connectNulls={false}
+				isAnimationActive={false}
 			/>
 			<Area
 				dataKey='uv'
 				stroke='#F37D73'
 				strokeWidth={2}
 				fillOpacity={1}
-				fill='url(#colorUv)'
+				fill='none'
+				isAnimationActive={false}
 				dot={{ fill: '#F37D73', strokeWidth: 2, r: 4 }}
 				connectNulls={false}
 			/>
 		</AreaChart>
-	)
-}
-
-const YAxisTick = (props: any) => {
-	const { x, y, payload } = props
-	return (
-		<text x={x - 15} fontSize={14} fill='#264354' y={y} dy={4} textAnchor='end'>
-			{payload.value}%
-		</text>
-	)
-}
-
-const XAxisTick = (props: any) => {
-	const { x, y, payload } = props
-	return (
-		<text
-			x={x + 10}
-			y={y + 15}
-			dy={4}
-			textAnchor='end'
-			fontSize={14}
-			fill='#264354'
-		>
-			{payload.value}
-		</text>
 	)
 }
