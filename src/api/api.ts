@@ -15,6 +15,6 @@ export const getData = async (): Promise<TDataCollection> => {
 		return data as any
 	} catch (error) {
 		console.error('API Error:', error)
-		throw error
+		return data as any
 	}
 }
