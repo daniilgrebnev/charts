@@ -1,7 +1,8 @@
 import axios from 'axios'
 import type { TDataCollection } from '../types/data'
 
-import data from '../test-data.json'
+// import data from '../test-data.json'
+import { testData as data } from './vercel-test-data'
 
 //const defaultUrl = ''
 

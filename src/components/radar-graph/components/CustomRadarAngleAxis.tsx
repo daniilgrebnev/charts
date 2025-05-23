@@ -7,7 +7,7 @@ export const CustomRadarAngleAxis = ({
 	index,
 	onChangeElement,
 }: any) => {
-	// Радиус должен быть точно таким же, как `outerRadius` в RadarChart
+	// TODO: Радиус должен быть точно таким же, как `outerRadius` в RadarChart
 
 	const angle = payload.coordinate
 	const radians = (Math.PI / 180) * angle
