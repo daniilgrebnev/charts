@@ -1,3 +1,4 @@
+import { ProfileIcon } from '../../../../icons/ProfileIcon'
 import { SecurityIcon } from '../../../../icons/SecurityIcon'
 import { DefaultBlock } from '../../../default-block/DefaultBlock'
 import styles from './analytics-stat.module.css'
@@ -26,7 +27,7 @@ export const AnalyticsStat = () => {
 			<DefaultBlock>
 				<div className={styles.block}>
 					<div className={`${styles.heading} `}>
-						<SecurityIcon height={22} fill='rgba(38, 67, 84, 0.6)' />
+						<ProfileIcon height={22} fill='rgba(38, 67, 84, 0.6)' />
 						<h3>Всего профилей</h3>
 					</div>
 					<div className={styles.content}>
