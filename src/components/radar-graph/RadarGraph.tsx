@@ -31,7 +31,7 @@ export function RadarGraph() {
 	const [radius, setRadius] = useState(0)
 	const [activeIndex, setActiveIndex] = useState(0)
 
-	const outerRadius = 0.9 // 90%
+	const outerRadius = 0.8 // 80%
 
 	// Высчитываем outerRadius в пикселях (например, 90% от меньшей стороны)
 	useEffect(() => {
@@ -60,7 +60,7 @@ export function RadarGraph() {
 						axisLine={false}
 						tick={<></>}
 						angle={30}
-						domain={[-20, 100]}
+						domain={[-25, 100]}
 					/>
 					<PolarAngleAxis
 						tick={
@@ -78,6 +78,7 @@ export function RadarGraph() {
 							<CustomRadarShape
 								activeIndex={activeIndex}
 								onChangeElement={(index: number) => setActiveIndex(index)}
+								radius={radius}
 							/>
 						}
 						isAnimationActive={false}

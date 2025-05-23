@@ -1,13 +1,11 @@
-export const CustomRadarShape = ({
-	points,
-	angleAxis,
-	activeIndex,
-	onChangeElement,
-}: any) => {
+export const CustomRadarShape = (props: any) => {
+	const { points, angleAxis, activeIndex, onChangeElement, radius } = props
 	const { cx, cy } = angleAxis
-
+	console.log(props)
 	const activeElement = points[activeIndex]
 	const otherElements = points.filter((_: any, i: any) => i !== activeIndex)
+
+	// Найдем максимальный радиус графика (расстояние до самой дальней точки)
 
 	const renderPoint = (p: any, index: number, isActive: boolean) => {
 		const dx = p.x - cx
@@ -18,10 +16,16 @@ export const CustomRadarShape = ({
 		// Расстояние от центра до точки
 		const length = Math.sqrt(dx * dx + dy * dy)
 
-		const tipX = 0
 		const tipY = -length // Вершина наверху, основание — внизу
 
-		const value = p.payload?.value || 0
+		// Координаты точки на максимальном значении (100%)
+		const maxX = cx + (dx / length) * radius
+		const maxY = cy + (dy / length) * radius
+
+		const min = -25
+		const max = 100
+		const scale = radius / (max - min)
+		const radiusAtZero = (0 - min) * scale
 
 		return (
 			<g
@@ -33,9 +37,9 @@ export const CustomRadarShape = ({
 				<g transform={`translate(${cx},${cy}) rotate(${angleDeg})`}>
 					<path
 						d={`
-		M -60 0
+		M -${radiusAtZero * 1.15} 0
 		C -60 ${tipY * 0.4}, -30 ${tipY * 1.1}, 0 ${tipY}
-		C 30 ${tipY * 1.1}, 60 ${tipY * 0.4}, 60 0
+		C 30 ${tipY * 1.1}, 60 ${tipY * 0.4}, ${radiusAtZero * 1.17} 0
 		Z
 	`}
 						fill={isActive ? '#F8AAA4' : 'rgba(115, 195, 243, 0.1)'}
@@ -45,30 +49,39 @@ export const CustomRadarShape = ({
 				{/* Центральный круг и текст */}
 				{isActive && (
 					<g>
+						<line
+							x1={p.x}
+							y1={p.y}
+							x2={maxX} // Конечная точка на максимальном значении (100%), но не дальше границ
+							y2={maxY}
+							stroke='#F37D73'
+							strokeWidth={2}
+						/>
+
 						<circle
 							cx={cx}
 							cy={cy}
-							r={50}
+							r={radiusAtZero}
 							fill='white'
 							stroke='#F8AAA4'
-							strokeWidth={20}
+							strokeWidth={radiusAtZero / 3}
 						/>
 						<circle
 							cx={cx}
 							cy={cy}
-							r={50}
+							r={60}
 							fill='none'
-							filter='url(#circle-shadow)'
+							filter='drop-shadow(20px #000)'
 						/>
 						<text
 							x={cx}
 							y={cy + 8}
 							textAnchor='middle'
-							fontSize={24}
-							fontWeight='bold'
+							fontSize='clamp(16px, 2.5vw, 28px)'
+							fontWeight={600}
 							fill='#2A3A4B'
 						>
-							{`${value}%`}
+							{`${p.payload?.value}%`}
 						</text>
 					</g>
 				)}

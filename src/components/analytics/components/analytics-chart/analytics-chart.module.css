@@ -1,0 +1,59 @@
+.analytics_chart {
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	width: 100%;
+	flex-direction: column;
+	gap: 10px;
+}
+.heading {
+	display: flex;
+	align-items: start;
+	justify-content: space-between;
+	width: 100%;
+}
+.heading_text {
+}
+.heading_text h3 {
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 120%;
+	color: var(--text-primary);
+}
+.heading_text p {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 120%;
+	color: var(--text-primary);
+}
+.heading_text span {
+}
+.heading_variants {
+	display: flex;
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 120%;
+	gap: 14px;
+}
+.heading_variants div {
+	border-radius: 20px;
+	padding: 5px 10px;
+	background: rgba(38, 67, 84, 0.2);
+	cursor: pointer;
+	transition: all 0.3;
+	color: var(--text-primary);
+}
+.heading_variants div:hover {
+	background: rgba(38, 67, 84, 0.1);
+}
+.variant_active {
+	color: white !important;
+	background: var(--text-primary) !important;
+}
+.chart {
+	display: flex;
+	width: 100%;
+
+	justify-content: start;
+	align-items: center;
+}
