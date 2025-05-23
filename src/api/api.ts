@@ -3,7 +3,7 @@ import type { TDataCollection } from '../types/data'
 
 import data from '../test-data.json'
 
-const defaultUrl = ''
+//const defaultUrl = ''
 
 export const getData = async (): Promise<TDataCollection> => {
 	try {
