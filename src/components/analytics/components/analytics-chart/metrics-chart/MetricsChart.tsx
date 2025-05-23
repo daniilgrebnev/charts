@@ -7,7 +7,6 @@ const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс', '']
 export const MetricsChart = () => {
 	const data = useAppSelector(state => state.data)
 
-	// Явно проверяем, что activeId не undefined/null, а элемент найден
 	const activeItem = data.items.find(item => item.id === data.activeId)
 	const activeData = activeItem?.data
 

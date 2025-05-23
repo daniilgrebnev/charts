@@ -17,7 +17,6 @@ export function RadarGraph() {
 	const dispatch = useAppDispatch()
 	const activeId = store.activeId
 
-	// Находим индекс активного элемента
 	const activeIndex = store.items.findIndex(item => item.id === activeId)
 
 	const data = store.items.map(item => ({

@@ -4,7 +4,6 @@ import {
 	useSelector,
 } from 'react-redux'
 import type { AppDispatch, RootState } from './store/store'
-// Укажите правильный путь к вашему store
 
 // Типизированный useDispatch
 export const useAppDispatch = () => useDispatch<AppDispatch>()

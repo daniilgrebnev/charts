@@ -1,7 +1,7 @@
 export const CustomRadarShape = (props: any) => {
 	const { points, angleAxis, activeIndex, onChangeElement, radius } = props
 	const { cx, cy } = angleAxis
-	console.log(props)
+
 	const activeElement = points[activeIndex]
 	const otherElements = points.filter((_: any, i: any) => i !== activeIndex)
 
@@ -52,7 +52,7 @@ export const CustomRadarShape = (props: any) => {
 						<line
 							x1={p.x}
 							y1={p.y}
-							x2={maxX} // Конечная точка на максимальном значении (100%), но не дальше границ
+							x2={maxX}
 							y2={maxY}
 							stroke='#F37D73'
 							strokeWidth={2}
