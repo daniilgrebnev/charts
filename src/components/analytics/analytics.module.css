@@ -6,7 +6,9 @@
 	flex-direction: column;
 	max-height: calc(100dvh - 75px);
 	overflow-y: auto;
+	overflow-x: visible;
 	padding-bottom: 50px;
+	padding: 0 5px 50px 5px;
 }
 .analytics {
 	scrollbar-width: none;

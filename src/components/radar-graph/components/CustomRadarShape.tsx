@@ -39,7 +39,7 @@ export const CustomRadarShape = (props: any) => {
 						d={`
 		M -${radiusAtZero * 1.15} 0
 		C -60 ${tipY * 0.4}, -30 ${tipY * 1.1}, 0 ${tipY}
-		C 30 ${tipY * 1.1}, 60 ${tipY * 0.4}, ${radiusAtZero * 1.17} 0
+		C 30 ${tipY * 1.1}, 60 ${tipY * 0.4}, ${radiusAtZero * 1.15} 0
 		Z
 	`}
 						fill={isActive ? '#F8AAA4' : 'rgba(115, 195, 243, 0.1)'}
@@ -77,7 +77,7 @@ export const CustomRadarShape = (props: any) => {
 							x={cx}
 							y={cy + 8}
 							textAnchor='middle'
-							fontSize='clamp(16px, 2.5vw, 28px)'
+							fontSize='clamp(16px, 2.2vw, 24px)'
 							fontWeight={600}
 							fill='#2A3A4B'
 						>
